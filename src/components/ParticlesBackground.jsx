@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { loadFull } from "tsparticles";
 
 const ParticlesBackground = () => {
   const canvasRef = useRef(null);
@@ -33,14 +34,14 @@ const ParticlesBackground = () => {
       draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(212, 175, 55, 0.5)"; // Colore oro
+        ctx.fillStyle = "rgba(212, 175, 55, 0.5)";
         ctx.fill();
       }
     }
 
     const initParticles = () => {
       particles = [];
-      const numParticles = Math.min(window.innerWidth / 15, 100); // Numero atomi
+      const numParticles = Math.min(window.innerWidth / 15, 100);
       for (let i = 0; i < numParticles; i++) {
         particles.push(new Particle());
       }
@@ -53,7 +54,6 @@ const ParticlesBackground = () => {
         p.update();
         p.draw();
       });
-      // Disegna le linee di connessione (effetto rete/atomica)
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
